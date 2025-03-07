@@ -4,6 +4,7 @@ const vender = require("./router/VenderRoute.js")
 const product=require("./router/ProductRoute.js")
 const deleteAllProduct = require("./router/allProductRoute.js")
 const editProduct= require("./router/allProductRoute.js")
+const editsell =require("./router/VenderRoute.js")
 const cors = require("cors");
 const app = express();
 
@@ -13,7 +14,9 @@ app.use(cors());
 const port = 3000;
 connectDB;
 app.use("/api",vender)
+
 app.use("/api/product",product)
+app.use("/api/editvender",editsell)
 app.use("/deleteProduct",deleteAllProduct)
 app.use("/api/editProduct", editProduct);
 

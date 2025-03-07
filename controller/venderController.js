@@ -35,4 +35,29 @@ const deleteVender = async(req,res) =>{
         res.status(400).json({ message: "Error Occurs" });
       }
 }
-module.exports={addNewVender,getVender,deleteVender}
+const editsell=async (req,res)=>{
+    try{
+        const { id } = req.params;
+        const { name, mobile } = req.body;
+
+      const updateData = {
+        name,
+        mobile
+      };
+
+      const saveUpdatedData = await Vender.findByIdAndUpdate(id, updateData, {
+        new: true,
+      });
+
+      if(!saveUpdatedData){
+      return res.status(404).json({ message: "Edit product not found" });
+      }
+
+      res.status(200).json({message:"Data edited",user:saveUpdatedData})
+
+    }catch(error){
+        console.error(error)
+    }
+}
+
+module.exports={addNewVender,getVender,deleteVender,editsell}
